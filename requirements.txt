@@ -1,0 +1,17 @@
+fastai
+gensim
+gradio
+ipywidgets
+jupyter
+nltk
+notebook
+pandas
+plotly
+pytest
+scikit-learn
+seaborn
+setuptools
+simpletransformers
+spacy
+transformers
+wheel
