@@ -1,51 +1,18 @@
-# Import the required Libraries
 import gradio as gr
-import numpy as np
-import pandas as pd
-import pickle
-import transformers 
-from transformers import AutoTokenizer, AutoConfig,AutoModelForSequenceClassification,TFAutoModelForSequenceClassification
-from scipy.special import softmax
-# Requirements
-model_path = "Kaludi/Reviews-Sentiment-Analysis"
-tokenizer = AutoTokenizer.from_pretrained(model_path)
-config = AutoConfig.from_pretrained(model_path)
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
+from transformers import pipeline
 
-# Preprocess text (username and link placeholders)
-def preprocess(text):
-    new_text = []
-    for t in text.split(" "):
-        t = "@user" if t.startswith("@") and len(t) > 1 else t
-        t = "http" if t.startswith("http") else t
-        new_text.append(t)
-    return " ".join(new_text)
+examples = ["examples/example_0.jpg", 
+            "examples/example_1.png", 
+            "examples/example_2.png", 
+            "examples/example_3.png", 
+            "examples/example_4.jpg",
+            "examples/example_5.png"]
 
-# ---- Function to process the input and return prediction
-def sentiment_analysis(text):
-    text = preprocess(text)
-
-    encoded_input = tokenizer(text, return_tensors = "pt") # for PyTorch-based models
-    output = model(**encoded_input)
-    scores_ = output[0][0].detach().numpy()
-    scores_ = softmax(scores_)
-    
-    # Format output dict of scores
-    labels = ["Negative", "Positive"]
-    scores = {l:float(s) for (l,s) in zip(labels, scores_) }
-    
-    return scores
-
-
-# ---- Gradio app interface
-app = gr.Interface(fn = sentiment_analysis,
-                   inputs = gr.Textbox("Write your text or review here..."),
-                   outputs = "label",
-                   title = "Sentiment Analysis of Customer Reviews",
-                   description  = "A tool that analyzes the overall sentiment of customer reviews for a specific product or service, whether it's positive or negative. This analysis is performed by using natural language processing algorithms and machine learning from the model 'Reviews-Sentiment-Analysis' trained by Kaludi, allowing businesses to gain valuable insights into customer satisfaction and improve their products and services accordingly.",
-                   article = "<p style='text-align: center'><a href='https://github.com/Kaludii'>Github</a> | <a href='https://huggingface.co/Kaludi'>HuggingFace</a></p>",
-                   interpretation = "default",
-                   examples = [["I was extremely disappointed with this product. The quality was terrible and it broke after only a few days of use. Customer service was unhelpful and unresponsive. I would not recommend this product to anyone."],[ "I am so impressed with this product! The quality is outstanding and it has exceeded all of my expectations. The customer service team was also incredibly helpful and responsive to any questions I had. I highly recommend this product to anyone in need of a top-notch, reliable solution."],["I don't feel like you trust me to do my job."],["This service was honestly one of the best I've experienced, I'll definitely come back!"]]
-                   )
-
-app.launch()
+pipe = pipeline(task="image-classification", 
+                model="Kaludi/csgo-weapon-classification")
+gr.Interface.from_pipeline(pipe, 
+                           title="CSGO Weapon Image Classification",
+                           description = "This is a CSGO Weapon Classifier Model that has been trained by <strong><a href='https://huggingface.co/Kaludi'>Kaludi</a></strong> to recognize <strong>11</strong> different types of Counter-Strike: Global Offensive (CSGO) Weapons, which include <strong>AK-47,AWP,Famas,Galil-AR,Glock,M4A1,M4A4,P-90,SG-553,UMP,USP</strong>. The model is capable of accurately classifying the weapon name present in an image. With its deep understanding of the characteristics of each weapon in the game, the model is a valuable tool for players and fans of CSGO.",
+                           article = "<p style='text-align: center'><a href='https://github.com/Kaludii'>Github</a> | <a href='https://huggingface.co/Kaludi'>HuggingFace</a></p>",
+                           examples=examples,
+                           ).launch()
