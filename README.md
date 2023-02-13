@@ -10,7 +10,7 @@ Click [Here](https://huggingface.co/spaces/Kaludi/CSGO-Weapon-Classification_App
 
 ## Model & Dataset Info
 
-The model was trained on the [CSGO Weapon Image Classification dataset](https://huggingface.co/datasets/Kaludi/data-csgo-weapon-classification) and is available on HuggingFace's model hub [here](https://huggingface.co/Kaludi/csgo-weapon-classification).
+The model was trained on the [CSGO Weapon Image Classification dataset](https://huggingface.co/datasets/Kaludi/data-csgo-weapon-classification) and the model is available on HuggingFace [here](https://huggingface.co/Kaludi/csgo-weapon-classification).
 
 ## Getting started
 
