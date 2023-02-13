@@ -6,7 +6,7 @@ This is a machine learning model developed by Kaludi that can classify 11 differ
 # Web App
 Click [Here](https://huggingface.co/spaces/Kaludi/CSGO-Weapon-Classification_App) To View This App Online!
 
-![Image](edit)
+![Image](https://github.com/Kaludii/CSGO-Weapon-Classification/blob/main/images/CSGO.png?raw=true)
 
 ## Model & Dataset Info
 
