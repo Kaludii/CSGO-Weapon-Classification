@@ -3,6 +3,13 @@
 
 This is a machine learning model developed by Kaludi that can classify 11 different types of weapons in the popular game Counter-Strike: Global Offensive (CSGO). The model is capable of accurately classifying the weapon present in an image. With its deep understanding of the characteristics of each weapon in the game, the model is a valuable tool for players and fans of CSGO.
 
+# Web App
+Click [Here](https://huggingface.co/spaces/Kaludi/CSGO-Weapon-Classification_App) To View This App Online!
+
+![Image](edit)
+
+## Model & Dataset Info
+
 The model was trained on the [CSGO Weapon Image Classification dataset](https://huggingface.co/datasets/Kaludi/data-csgo-weapon-classification) and is available on HuggingFace's model hub [here](https://huggingface.co/Kaludi/csgo-weapon-classification).
 
 ## Getting started
