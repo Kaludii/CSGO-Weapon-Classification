@@ -41,10 +41,6 @@ You can test the model using the example images provided in the code or by using
 
 -   Gradio
 -   Transformers
--   Numpy
--   Pandas
--   Pickle
--   Scipy
 
 ## Contributor
 
